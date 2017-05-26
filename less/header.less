@@ -1,0 +1,38 @@
+@headerHeight: 90px;
+
+.header{
+  height: @headerHeight;
+  background: #4D3B66;
+  opacity: .5;
+
+  .logo,
+  .nav{
+    display: inline-block;
+    padding: 15px 50px;
+    height: 60px;
+    line-height: 60px;
+    img{
+      height: 100%;
+      float: left;
+    }
+    a{
+      margin-left: 10px;
+      font-size: 1.8rem;
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  ul.nav{
+    float: right;
+    list-style: none;
+    li{
+      display: inline-block;
+      float: left;
+      a{
+        font-size: 0.9rem;
+        margin-left: 20px;
+      }
+    }
+  }
+}
