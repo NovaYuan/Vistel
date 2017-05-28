@@ -5,22 +5,42 @@
 
   ul{
     list-style: none;
+    clear: both;
+    zoom: 1;
+    margin-top: 110px;
     li{
       position: relative;
       float: left;
+      clear: right;
       width: 33%;
-      height: @productHeight;
-      background: url(../images/u32.png) no-repeat center;
+      height: 180px;
 
       p{
-        position: absolute;
-        bottom: 0;
         text-align: center;
-        line-height: 50px;
-        width: 100%;
+        line-height: 180px;
+        width: 180px;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 700;
+        margin: 0 auto;
+
+        span{
+          position: relative;
+          width: 100%;
+          bottom: -110px;
+        }
       }
+    }
+    li p.product-1{
+      background: url(../images/product-1.png) no-repeat center;
+      background-size: 200px 200px;
+    }
+    li p.product-2{
+      background: url(../images/product-2.png) no-repeat center;
+      background-size: 200px 200px;
+    }
+    li p.product-3{
+      background: url(../images/product-3.png) no-repeat center;
+      background-size: 200px 200px;
     }
   }
 }
