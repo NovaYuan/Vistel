@@ -1,9 +1,14 @@
 @headerHeight: 90px;
+@themeColor: #4D3B66;
 
 .header{
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
   height: @headerHeight;
-  background: #4D3B66;
-  opacity: .5;
+  background: @themeColor;
+  opacity: .8;
 
   .logo,
   .nav{

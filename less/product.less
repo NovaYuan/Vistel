@@ -1,0 +1,26 @@
+@productHeight: 400px;
+
+.product{
+  height: @productHeight;
+
+  ul{
+    list-style: none;
+    li{
+      position: relative;
+      float: left;
+      width: 33%;
+      height: @productHeight;
+      background: url(../images/u32.png) no-repeat center;
+
+      p{
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        line-height: 50px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+}
