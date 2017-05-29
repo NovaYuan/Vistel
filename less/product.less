@@ -1,4 +1,4 @@
-@productHeight: 400px;
+@productHeight: 300px;
 
 .product{
   height: @productHeight;
@@ -7,7 +7,7 @@
     list-style: none;
     clear: both;
     zoom: 1;
-    margin-top: 110px;
+    margin-top: 50px;
     li{
       position: relative;
       float: left;
@@ -22,6 +22,10 @@
         font-size: 16px;
         font-weight: 700;
         margin: 0 auto;
+        transition: all .5s;
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
 
         span{
           position: relative;
@@ -40,6 +44,19 @@
     }
     li p.product-3{
       background: url(../images/product-3.png) no-repeat center;
+      background-size: 200px 200px;
+    }
+
+    li p.product-1.active{
+      background: url(../images/product-1-a.png) no-repeat center;
+      background-size: 200px 200px;
+    }
+    li p.product-2.active{
+      background: url(../images/product-2-a.png) no-repeat center;
+      background-size: 200px 200px;
+    }
+    li p.product-3.active{
+      background: url(../images/product-3-a.png) no-repeat center;
       background-size: 200px 200px;
     }
   }

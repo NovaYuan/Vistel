@@ -5,31 +5,41 @@
   height: @sliderHeight;
 
   .slider{
+    position: relative;
+    overflow: hidden;
     height: 100%;
     li{
       height: @sliderHeight;
       position: absolute;
       width: 100%;
-      background: url(../images/u0.png) no-repeat center;
+      //background-color: red;
       background-size: 100% 100%;
+      transition: all 1s;
+      -webkit-transition: all 1s;
+      -moz-transition: all 1s;
+      -o-transition: all 1s;
 
       .slider-mask{
         position: absolute;
-        height: 460px;
+        height: @sliderHeight;
         top: 0;
         z-index: 9;
-        margin-top: 90px;
         width: 100%;
         background: rgba(0, 0, 0, .1);
       }
       .slider-content-wrapper{
         position: absolute;
         left: 25%;
-        top: 50%;
+        top: 90%;
         z-index: 99;
         width: 50%;
         margin: -50px auto auto;
         text-align: center;
+        opacity: 0;
+        transition: all 1.5s;
+        -webkit-transition: all 1.5s;
+        -moz-transition: all 1.5s;
+        -o-transition: all 1.5s;
 
         h5{
           font-size: 35px;
@@ -42,6 +52,19 @@
           color: #fff;
         }
       }
+    }
+    li:first-child{
+      background: url(../images/u0.png) no-repeat center;
+      background-size: 100% 100%;
+      left: 0;
+    }
+    li:nth-child(2){
+      background: url(../images/banner2.png) no-repeat center;
+      background-size: 100% 100%;
+    }
+    li:nth-child(3){
+      background: url(../images/banner3.png) no-repeat center;
+      background-size: 100% 100%;
     }
   }
 
@@ -57,6 +80,11 @@
       width: 10px;
       height: 10px;
       background: #fff;
+      margin-right: 10px;
+      opacity: .3;
+    }
+    li.active{
+      opacity: 1;
     }
   }
 
@@ -82,7 +110,22 @@
       color: #fff;
       border-radius: 50%;
       border: 2px solid #fff;
+
+      &:hover{
+        opacity: 1;
+      }
     }
+  }
+
+  .slider-arrow.prev a{
+    background: url(../images/arrow.png) no-repeat center;
+    transform: rotate(180deg);
+    opacity: .5;
+  }
+
+  .slider-arrow.next a{
+    background: url(../images/arrow.png) no-repeat center;
+    opacity: .5;
   }
 
   .slider-arrow.next{
