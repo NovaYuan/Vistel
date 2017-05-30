@@ -150,6 +150,15 @@ $(function(){
 
                     myChart.setOption(option)
                 }
+            },
+            productChangeClick: function(e){
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+
+                $(".pro-content .active").fadeOut();
+                $($(this).data("target")).fadeIn();
+                $(".pro-content .active").removeClass("active");
+                $($(this).data("target")).addClass("active");
             }
         },
         events: function(){
@@ -169,6 +178,10 @@ $(function(){
                 trigger: "click",
                 dom: ".slider-arrow.next",
                 fn: this.handler.nextSlideClick
+            }, {
+                trigger: "click",
+                dom: ".pro-type li",
+                fn: this.handler.productChangeClick
             }];
 
             $.each(eventsTarget, function(index, target){
