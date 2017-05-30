@@ -1,0 +1,80 @@
+@import "define";
+@import "header";
+@import "slider";
+@import "footer";
+
+.slider-wrapper{
+  height: 390px;
+  .slider li{
+    height: 390px;
+
+    .slider-content-wrapper{
+      margin: 0 auto auto;
+    }
+  }
+}
+
+.about-par{
+  padding: 30px 50px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+
+  section{
+    >h5{
+      width: 120px;
+      margin: auto;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #333;
+      font: 20px nomal;
+    }
+
+    >p{
+      width: 70%;
+      margin: 10px auto 50px;
+      text-indent: 2em;
+      font-size: 13px;
+      line-height: 26px;
+    }
+  }
+
+  section.job{
+    width: 70%;
+    text-align: left;
+    margin: auto auto 80px;
+
+    >h5{
+      width: auto;
+      border-bottom: none;
+      font-weight: bold;
+
+      a{
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid rgb(0, 179, 138);
+        color: rgb(0, 179, 138);
+        text-decoration: none;
+        font-size: 13px;
+      }
+    }
+
+    dl{
+      dt{
+        font-weight: bold;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      dd{
+        font-size: 13px;
+        line-height: 26px;
+        pre{
+          word-break: break-all;
+        }
+      }
+    }
+
+    pre{
+      font-family: "微软雅黑", Microsoft YaHei, Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
+    }
+  }
+}
