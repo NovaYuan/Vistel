@@ -181,7 +181,7 @@ $(function(){
 
                 if(scrollTop !== 0){
                     $header.addClass("active")
-                }else if(scrollTop <= 150){
+                }else{
                     $header.removeClass("active")
                 }
             });
