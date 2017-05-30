@@ -79,6 +79,77 @@ $(function(){
             },
             nextSlideClick: function(){
                 app.handler.sliderCtrl();
+            },
+            initCharts: function(){
+                var $el = $("#tlbsm-rate");
+
+                if($el.length <= 0){
+                    return false;
+                }else{
+                    var myChart = echarts.init(document.getElementById('tlbsm-rate'));
+
+                    var option = {
+                        title : {
+                            text: '糖尿病患者失明患病率',
+                            x:'center',
+                            y: 'bottom',
+                            textStyle: {
+                                color: '#09a2de',
+                                fontWeight: 'normal'
+                            }
+                        },
+                        series : [
+                            {
+                                name:'糖尿病患者失明患病率',
+                                type:'pie',
+                                radius: ['50%', '70%'],
+                                data:[
+                                    {
+                                        value: 0.07,
+                                        name:'10年者 7%',
+                                        itemStyle: {
+                                            normal: {
+                                                show: true,
+                                                color: '#2ec7c9'
+                                            },
+                                            emphasis: {
+                                                show: true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        value: 0.25,
+                                        name:'10~14年者 25%',
+                                        itemStyle: {
+                                            normal: {
+                                                show: true,
+                                                    color: '#b6a2de'
+                                            },
+                                            emphasis: {
+                                                show: true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        value: 0.7,
+                                        name:'15年者 70%',
+                                        itemStyle: {
+                                            normal: {
+                                                show: true,
+                                                color: '#09a2de'
+                                            },
+                                            emphasis: {
+                                                show: true
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option)
+                }
             }
         },
         events: function(){
@@ -122,9 +193,13 @@ $(function(){
             $(".slider-wrapper .slider li:not('.active')").css({
                 left: $sliderWrapperWidth + "px"
             })
+        },
+        render: function(){
+            this.events();
+            this.handler.initCharts();
         }
     };
 
     app = new App();
-    app.events();
+    app.render();
 });
