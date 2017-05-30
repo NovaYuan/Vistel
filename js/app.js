@@ -4,62 +4,61 @@
 $(function(){
     var App, //App对象
         app, //app实例化
-        $sliderWrapperWidth = $(".slider-wrapper").width();
+        $sliderWrapperWidth = $(".slider-wrapper").width(),
+        $sliderImgContainer = $(".slider-wrapper .slider");
 
     App = function(){};
 
     App.prototype = {
         handler: {
+            slideGapFlag: false,
             sliderCtrl: function(isPrev){
                 var $active = $(".slider .active"),
                     $sliderli = $(".slider li"),
-                    curIndex = $active.index(),
+                    curIndex = $active.data("index"),
                     indexing,
-                    gapVal = 0;
+                    gapVal = 0,
+                    moveLeft;
 
                 if(!isPrev){
-                    gapVal = $sliderli.length - 1
+                    gapVal = $sliderli.length - 1;
+                    moveLeft = - $sliderWrapperWidth;
+                }else{
+                    gapVal = 0;
+                    moveLeft = $sliderWrapperWidth;
                 }
-
-
-            },
-            productMouseover: function(e){
-                $(this).addClass("active");
-            },
-            productMouseout: function(e){
-                $(this).removeClass("active");
-            },
-            prevSlideClick: function(e){
-                var $active = $(".slider .active"),
-                    $sliderli = $(".slider li"),
-                    curIndex = $active.index(),
-                    indexing;
 
                 $active.find(".slider-content-wrapper").css({
                     top: "90%",
                     opacity: 0
                 });
 
-                if(curIndex <= 0){
+                if(isPrev ? curIndex <= gapVal : curIndex < gapVal){
+                    var nextIndex = isPrev ? $sliderli.length - 1 : curIndex + 1;
+
                     $active.css({
-                        left: $sliderWrapperWidth + "px"
+                        left: ( isPrev ? - moveLeft : moveLeft ) + "px"
                     });
 
                     $active.removeClass("active");
-                    $sliderli.eq($sliderli.length - 1).addClass("active").css({
+                    $sliderli.eq(nextIndex).addClass("active").css({
                         left: 0
                     });
-                    indexing = $sliderli.length - 1;
+                    indexing = nextIndex;
+                    this.slideGapFlag = true;
                 }else{
+                    var nextIndex = isPrev ? curIndex - 1 : 0;
+
                     $active.css({
-                        left: $sliderWrapperWidth + "px"
+                        left: (this.slideGapFlag ? - moveLeft : moveLeft) + "px"
                     });
 
                     $active.removeClass("active");
-                    $sliderli.eq(curIndex - 1).addClass("active").css({
-                        left: 0
+                    $sliderli.eq(nextIndex).addClass("active").css({
+                        left: 0,
+                        zIndex: 8
                     });
-                    indexing = curIndex - 1;
+                    indexing = nextIndex;
                 }
 
                 $(".slider-point .active").removeClass("active");
@@ -69,37 +68,17 @@ $(function(){
                     opacity: 1
                 })
             },
+            productMouseover: function(e){
+                $(this).addClass("active");
+            },
+            productMouseout: function(e){
+                $(this).removeClass("active");
+            },
+            prevSlideClick: function(e){
+                app.handler.sliderCtrl(true);
+            },
             nextSlideClick: function(){
-                var $active = $(".slider .active"),
-                    $sliderli = $(".slider li"),
-                    curIndex = $active.index(),
-                    indexing;
-
-                if(curIndex < $sliderli.length - 1){
-                    $active.css({
-                        left: - $sliderWrapperWidth + "px"
-                    });
-
-                    $active.removeClass("active");
-                    $sliderli.eq(curIndex + 1).addClass("active").css({
-                        left: 0
-                    });
-                    indexing = curIndex + 1;
-
-                }else{
-                    $active.css({
-                        left: -$sliderWrapperWidth + "px"
-                    });
-
-                    $active.removeClass("active");
-                    $sliderli.eq(0).addClass("active").css({
-                        left: 0
-                    });
-                    indexing = 0;
-                }
-
-                $(".slider-point .active").removeClass("active");
-                $(".slider-point li").eq(indexing).addClass("active");
+                app.handler.sliderCtrl();
             }
         },
         events: function(){
