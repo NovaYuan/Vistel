@@ -159,6 +159,11 @@ $(function(){
                 $($(this).data("target")).fadeIn();
                 $(".pro-content .active").removeClass("active");
                 $($(this).data("target")).addClass("active");
+            },
+            backToTopClick: function(){
+                $("body").animate({
+                    scrollTop: $("body").offset().top
+                }, 500)
             }
         },
         events: function(){
@@ -182,6 +187,10 @@ $(function(){
                 trigger: "click",
                 dom: ".pro-type li",
                 fn: this.handler.productChangeClick
+            }, {
+                trigger: "click",
+                dom: ".back-top-top",
+                fn: this.handler.backToTopClick
             }];
 
             $.each(eventsTarget, function(index, target){
