@@ -14,10 +14,15 @@
       width: 100%;
       z-index: -99;
       background-size: 100% 100%;
-      transition: all 1s;
-      -webkit-transition: all 1s;
-      -moz-transition: all 1s;
-      -o-transition: all 1s;
+      transition: left 1s;
+      -webkit-transition: left 1s;
+      -moz-transition: left 1s;
+      -o-transition: left 1s;
+      webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      -o-transform: translateZ(0);
+      transform: translateZ(0);
 
       .slider-mask{
         position: absolute;
@@ -44,6 +49,11 @@
         -webkit-transition: all 1.5s;
         -moz-transition: all 1.5s;
         -o-transition: all 1.5s;
+        webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
 
         h5{
           font-size: 35px;

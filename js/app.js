@@ -5,20 +5,25 @@ $(function(){
     var App, //App对象
         app, //app实例化
         $sliderWrapperWidth = $(".slider-wrapper").width(),
-        $sliderImgContainer = $(".slider-wrapper .slider");
+        $sliderImgContainer = $(".slider-wrapper .slider"),
+        slideInterval;
 
     App = function(){};
 
     App.prototype = {
         handler: {
             slideGapFlag: false,
-            sliderCtrl: function(isPrev){
+            sliderCtrl: function(isPrev, isClick){
                 var $active = $(".slider .active"),
                     $sliderli = $(".slider li"),
                     curIndex = $active.data("index"),
                     indexing,
                     gapVal = 0,
                     moveLeft;
+
+                if(isClick){
+                    clearInterval(slideInterval)
+                }
 
                 if(!isPrev){
                     gapVal = $sliderli.length - 1;
@@ -40,6 +45,13 @@ $(function(){
                         left: ( isPrev ? - moveLeft : moveLeft ) + "px"
                     });
 
+                    setTimeout(function(){
+                        $active.css({
+                            zIndex: -99,
+                            left: $sliderWrapperWidth + "px"
+                        });
+                    }, 1000);
+
                     $active.removeClass("active");
                     $sliderli.eq(nextIndex).addClass("active").css({
                         left: 0
@@ -50,8 +62,15 @@ $(function(){
                     var nextIndex = isPrev ? curIndex - 1 : 0;
 
                     $active.css({
-                        left: (this.slideGapFlag ? - moveLeft : moveLeft) + "px"
+                        left: (isPrev ? - moveLeft : moveLeft) + "px"
                     });
+
+                    setTimeout(function(){
+                        $active.css({
+                            zIndex: -99,
+                            left: $sliderWrapperWidth + "px"
+                        });
+                    }, 1000);
 
                     $active.removeClass("active");
                     $sliderli.eq(nextIndex).addClass("active").css({
@@ -66,7 +85,7 @@ $(function(){
                 $sliderli.eq(indexing).find(".slider-content-wrapper").css({
                     top: "50%",
                     opacity: 1
-                })
+                });
             },
             productMouseover: function(e){
                 $(this).addClass("active");
@@ -75,10 +94,10 @@ $(function(){
                 $(this).removeClass("active");
             },
             prevSlideClick: function(e){
-                app.handler.sliderCtrl(true);
+                app.handler.sliderCtrl(true, true);
             },
             nextSlideClick: function(){
-                app.handler.sliderCtrl();
+                app.handler.sliderCtrl(null, true);
             },
             initCharts: function(){
                 var $el = $("#tlbsm-rate");
@@ -219,6 +238,12 @@ $(function(){
         render: function(){
             this.events();
             this.handler.initCharts();
+
+            if($(".slider li").length > 1){
+                slideInterval = setInterval(function(){
+                    this.handler.sliderCtrl(null, false);
+                }.bind(this), 3000)
+            }
         }
     };
 
